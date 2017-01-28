@@ -29,7 +29,7 @@ class App extends Component {
     return(
       <div>
         <div ref="container"></div>
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/><br/><br/><br/>
 
           <CustomLogin/>
 
