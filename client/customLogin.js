@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
 class CustomLogin extends Component{
+  constructor(props){
+    super(props);
+    this.state = {message: ''};
+  }
+
   login(event){
     event.preventDefault();
 
@@ -9,9 +14,9 @@ class CustomLogin extends Component{
 
     console.log(`id: ${id} pwd: ${pwd}`);
 
-    Meteor.loginWithPassword(id, pwd, function(error){
-      if(error){
-        console.log(error.reason);
+    Meteor.loginWithPassword(id, pwd, (err) => {
+      if(err){
+        this.setState({message: err.reason});
       }else{
         console.log("success login!!!!!!!!!");
       }
@@ -32,6 +37,13 @@ class CustomLogin extends Component{
   render(){
     return(
       <div>
+        {this.state.message !== '' ?
+          <div style={{color:"red"}}>
+            <strong>
+              {this.state.message}
+            </strong>
+          </div>
+        : null}
         login<br/>
         <input ref="loginId" type="text" id="inputUsername" className="form-control"
         placeholder="Identifiant (prenom.nom)" autoFocus/>
